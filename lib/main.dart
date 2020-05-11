@@ -34,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   final _remembranceDay = DateTime(2018, 1, 28);
-  final _feedbackType = FeedbackType.light;
+  final _feedbackType = FeedbackType.heavy;
   final arr = [
     "饿的时候总想偷偷看你一眼，大概是因为秀色可餐吧。",
     "我想变得有趣，变得特别，变成你眼里的一点星光。",
@@ -67,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/background.gif'),
+          fit: BoxFit.cover,
         ),
       ),
       child: Stack(
@@ -154,8 +155,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               child: Image(
                 image: AssetImage("assets/images/gift.png"),
                 fit: BoxFit.cover,
-                width: 50,
-                height: 50,
+                width: 30,
+                height: 30,
               ),
               onTap: () {
                 print('gift');
