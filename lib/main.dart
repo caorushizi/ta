@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     calcDays();
-    Timer(Duration(seconds: 5), () {
+    Timer(Duration(seconds: 8), () {
       calcDays();
     });
     return DecoratedBox(
