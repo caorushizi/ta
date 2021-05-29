@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:loveu/bubble.dart';
+import 'package:loveu/http/core/hi_net.dart';
+import 'package:loveu/http/request/test_request.dart';
+
+import 'http/core/hi_error.dart';
 
 void main() {
   runApp(MyApp());
@@ -71,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         ),
       ),
       child: Stack(
-        overflow: Overflow.clip,
+        clipBehavior: Clip.hardEdge,
         fit: StackFit.loose,
         alignment: Alignment.center,
         children: [
@@ -158,8 +162,19 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 width: 30,
                 height: 30,
               ),
-              onTap: () {
+              onTap: () async {
                 print('gift');
+                TestRequest request = TestRequest();
+                request.add("aa", 'bb').add("requestPrams", "111");
+                try {
+                  await HiNet.getInstance().fire(request);
+                } on NeedAuth catch (e) {
+                  print(e);
+                } on NeedLogin catch (e) {
+                  print(e);
+                } on HiNetError catch (e) {
+                  print(e);
+                }
                 _showTip();
               },
             ),
